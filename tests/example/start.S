@@ -1,16 +1,16 @@
-    .section .init;              # 定义.init段
-    .globl _start;			     # 声明全局符号_start, 在别的文件中也可以调用
-    .type _start,@function       # _start是一个函数
+    .section .init;               # 定义.init段
+    .globl _start;			      # 声明全局符号_start, 在别的文件中也可以调用
+    .type _start,@function        # _start是一个函数
 
-_start:                        	 # _start标签, 用来指示start地址
-.option push                   	 # 临时性的保存
-.option norelax                	 # 不允许链接器松弛
-	la gp, __global_pointer$     # 伪指令, 对应auipc和lw; 赋值gp
-.option pop                      # 临时性的恢复
-	la sp, _sp                   # 将_sp的值赋给sp寄存器
-#ifdef SIMULATION
-    li x26, 0x00             # li s10, 0x00
-    li x27, 0x00             # li s11, 0x00
+_start:                        	  # _start标签, 用来指示start地址
+.option push                   	  # 临时性的保存
+.option norelax                	  # 不允许链接器松弛
+	la gp, __global_pointer$      # 伪指令, 对应auipc和lw; 赋值gp
+.option pop                       # 临时性的恢复
+	la sp, _sp                    # 将_sp的值赋给sp寄存器
+#ifdef SIMULATION 
+    li x26, 0x00                  # li s10, 0x00
+    li x27, 0x00                  # li s11, 0x00
 #endif
 
 	/* Load data section */
